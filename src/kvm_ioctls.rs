@@ -243,7 +243,6 @@ ioctl_io_nr!(KVM_SET_TSC_KHZ, KVMIO, 0xa2);
 ioctl_io_nr!(KVM_GET_TSC_KHZ, KVMIO, 0xa3);
 
 /* Available with KVM_CAP_ENABLE_CAP */
-#[cfg(not(any(target_arch = "arm", target_arch = "aarch64")))]
 ioctl_iow_nr!(KVM_ENABLE_CAP, KVMIO, 0xa3, kvm_enable_cap);
 /* Available with KVM_CAP_SIGNAL_MSI */
 #[cfg(any(
