@@ -161,6 +161,7 @@ pub enum Cap {
     CoalescedPio = KVM_CAP_COALESCED_PIO,
     #[cfg(target_arch = "aarch64")]
     ArmSve = KVM_CAP_ARM_SVE,
+    ArmRme = KVM_CAP_ARM_RME,
     #[cfg(any(target_arch = "arm", target_arch = "aarch64"))]
     ArmPtrAuthAddress = KVM_CAP_ARM_PTRAUTH_ADDRESS,
     #[cfg(any(target_arch = "arm", target_arch = "aarch64"))]
