@@ -1575,6 +1575,14 @@ impl VcpuFd {
                     Ok(VcpuExit::IoapicEoi(eoi.vector))
                 }
                 KVM_EXIT_HYPERV => Ok(VcpuExit::Hyperv),
+                KVM_EXIT_MEMORY_FAULT => {
+                    let fault = unsafe { &mut run.__bindgen_anon_1.memory_fault };
+                    Ok(VcpuExit::MemoryFault {
+                        flags: fault.flags,
+                        gpa: fault.gpa,
+                        size: fault.size,
+                    })
+                }
                 r => Ok(VcpuExit::Unsupported(r)),
             }
         } else {
