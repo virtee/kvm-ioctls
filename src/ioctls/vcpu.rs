@@ -153,6 +153,8 @@ pub enum VcpuExit<'a> {
     X86Rdmsr(ReadMsrExit<'a>),
     /// Corresponds to KVM_EXIT_X86_WRMSR.
     X86Wrmsr(WriteMsrExit<'a>),
+    /// Corresponds to KVM_EXIT_TDX
+    Tdx,
     /// Corresponds to an exit reason that is unknown from the current version
     /// of the kvm-ioctls crate. Let the consumer decide about what to do with
     /// it.
@@ -1455,6 +1457,7 @@ impl VcpuFd {
                     }
                 }
                 KVM_EXIT_HYPERCALL => Ok(VcpuExit::Hypercall),
+                KVM_EXIT_TDX => Ok(VcpuExit::Tdx),
                 KVM_EXIT_DEBUG => {
                     // SAFETY: Safe because the exit_reason (which comes from the kernel) told us
                     // which union field to use.
